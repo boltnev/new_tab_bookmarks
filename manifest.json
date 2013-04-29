@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+
+  "name": "Improved start page",
+  "description": "This extension allows to add more bookmarks on start page",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "images/Dog_Icon_64.png",
+    "default_popup": "popup.html"
+  },
+  
+  "chrome_url_overrides" : {
+    "newtab": "my_newtab.html"
+  },
+  
+  "permissions": [
+    "bookmarks",
+	"history"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  
+}
