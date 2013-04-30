@@ -1,6 +1,6 @@
-<a id=<%= id %> href="<%= url %>">
+<a id=<%= id %> title="<%= url %>" href="<%= url %>">
 	<div class="span2 bookmark">
 		<h3><%= title %></h3>
-		<%= url.length > 30 ? url.slice(0, 30) + "..." : url %>		
+		<%= url_domain(url) %>		
 	</div>
 </a>
