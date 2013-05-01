@@ -71,9 +71,9 @@ function createHistorySiteRating(){
 			return;
 		}
 		if(siteRating[dn] == undefined ){
-			siteRating[dn] = 1;
+			siteRating[dn] = 1 * (entry.typedCount + entry.visitCount);
 		}else{
-			siteRating[dn] += 1;
+			siteRating[dn] += 1 * (entry.typedCount + entry.visitCount);
 		}
 	})
 	siteRating = sortDictByValue(siteRating).reverse();

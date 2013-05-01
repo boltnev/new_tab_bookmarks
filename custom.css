@@ -2,8 +2,14 @@ body{
 	background:url('images/cool_pattern2.png');
 }
 
+#bookmarks{
+	max-width:1000px;
+	min-width:400px;
+}
+
 .bookmark{
-	width:240px;
+	max-width:240px;
+	min-width:150px;
 	height:120px;
 	overflow:hidden;
 	margin:10px;
@@ -22,4 +28,13 @@ body{
 .bookmark h3{
 	font-size:15px;
 	line-height: 15px;
+}
+
+.popular{
+	float:right;
+	width:200px;
+	word-break: break-all;
+	text-align:center;
+	padding:20px;
+	margin-top:10px;
 }
