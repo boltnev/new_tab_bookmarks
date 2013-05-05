@@ -5,11 +5,13 @@ var siteRating = [];
 
 var debug = false;
 BIGINT = 1000000;
+DEFAULT_BOOKMARKS_COUNT = 56;
+DEFAULT_POPULAR_COUNT = 40;
 /*** GLOBAL ***/
 
 /* API */
 function getAllBookmarks(){
-	chrome.bookmarks.getRecent(1000, function(bookmarks) {
+	chrome.bookmarks.getRecent(BIGINT, function(bookmarks) {
 	  getBookmarks(bookmarks);
 	});	
 }
@@ -37,7 +39,7 @@ function getHistories(){
 		  'maxResults': BIGINT  
 	    },
 	    function(historyItems) {
-			allHistories = historyItems
+			allHistories = historyItems;
 		})
 }
 
@@ -61,7 +63,7 @@ function addBookmarksToPage(bookmarks){
 }
 	
 function bookmarksToAddFirstTime(){
-	return allBookmarks.slice(0, 40);
+	return allBookmarks.slice(0, DEFAULT_BOOKMARKS_COUNT);
 }
 
 function createHistorySiteRating(){
