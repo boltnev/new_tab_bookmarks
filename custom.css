@@ -39,6 +39,7 @@ body{
 }
 
 .popular{
+	overflow:hidden;
 	float:right;
 	width:200px;
 	word-break: break-all;

@@ -1,6 +1,7 @@
 <a id=<%= id %> title="<%= url %>" href="<%= url %>">
 	<div class="span2 bookmark">
 		<h3><%= title %></h3>
+		<img src="chrome://favicon/<%= url_domain_and_http_type(url) %>"/>
 		<%= url_domain(url) %>		
 	</div>
 </a>

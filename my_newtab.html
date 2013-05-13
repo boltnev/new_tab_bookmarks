@@ -18,11 +18,17 @@
 <body>
 	<div class="navbar navbar-fixed-top navbar-inner">
 	        <div class="container">
-	          <div class="nav-collapse collapse">
 	            <ul class="nav">
-	              <li><a href="#">Home</a></li>
-	            </ul>	          
-	          </div><!--/.nav-collapse -->
+	              <li ><a href="#">Home</a></li>
+				  
+				  <li class="dropdown">
+					 <a href="#" id="app-list" class="dropdown-toggle" onclick="showAllApps();" data-toggle="dropdown">All my apps</a>
+				     <!-- Link or button to toggle dropdown -->
+				     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+  				       <li><a tabindex="-1" href="#">App</a></li>
+				     </ul>
+	     		  </li>
+	            </ul>	  
 	        </div>
 	      </div>
 		  

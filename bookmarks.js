@@ -2,6 +2,8 @@
 var allBookmarks = [];
 var allHistories = [];
 var siteRating = [];
+var completeList = [];
+var siteIcons = [];
 
 var debug = false;
 BIGINT = 1000000;
@@ -43,6 +45,52 @@ function getHistories(){
 		})
 }
 
+/* Functions from sample app  */
+
+function compare(a, b) {
+  return (a > b) ? 1 : (a == b ? 0 : -1);
+}
+
+function compareByName(app1, app2) {
+	return compare(app1.name.toLowerCase(), app2.name.toLowerCase());
+}
+
+function getAllApps(){
+    chrome.management.getAll(function(info) {
+     	var appCount = 0;
+      	for (var i = 0; i < info.length; i++) {
+        	if (info[i].isApp) {
+          		appCount++;
+        		completeList.push(info[i]);
+			}
+      	}
+      	if (appCount == 0) {
+        	$('search').style.display = 'none';
+        	$('appstore_link').style.display = '';
+        	return;
+      	}
+    	completeList = completeList.sort(compareByName);
+	}) 
+}  	
+	
+function getIconURL(app) {
+  	if (!app.icons || app.icons.length == 0) {
+  	  return chrome.extension.getURL('icon.png');
+  	}
+  	var largest = {size:0};
+  	for (var i = 0; i < app.icons.length; i++) {
+    	var icon = app.icons[i];
+   		if (icon.size > largest.size) {
+   			largest = icon;
+    	}
+  	}
+ 	return largest.url;
+}
+
+function launchApp(id) {
+	chrome.management.launchApp(id);
+ 	window.close(); // Only needed on OSX because of crbug.com/63594
+}
 	
 /*** API ***/
 /* LOGIC */
@@ -68,8 +116,8 @@ function bookmarksToAddFirstTime(){
 
 function createHistorySiteRating(){
 	allHistories.forEach(function(entry){
-		dn = url_domain(entry.url);
-		if(SHITLIST.indexOf(dn) >= 0){
+		dn = url_domain_and_http_type(entry.url);
+		if(SHITLIST.indexOf(url_domain(dn)) >= 0){
 			return;
 		}
 		if(siteRating[dn] == undefined ){
@@ -77,6 +125,7 @@ function createHistorySiteRating(){
 		}else{
 			siteRating[dn] += 1 * (entry.typedCount + entry.visitCount);
 		}
+		siteIcons[url_domain(dn)] = entry.url;
 	})
 	siteRating = sortDictByValue(siteRating).reverse();
 }
@@ -91,9 +140,19 @@ function sortDictByValue(dict){
 }
 // hack 
 function url_domain(data) {
-  var    a      = document.createElement('a');
-         a.href = data;
-  return a.hostname;
+  	var    a      = document.createElement('a');
+           a.href = data;
+    return a.hostname;
+}
+
+function url_domain_and_http_type(data) {
+    urlDomain = url_domain(data);
+	if(data.indexOf("https") >= 0){
+		return "https://" + urlDomain; 
+	}else{
+		return "http://" + urlDomain; 
+	}
+  
 }
 
 function perform(){
