@@ -152,10 +152,10 @@ function url_domain_and_http_type(data) {
 	}else{
 		return "http://" + urlDomain; 
 	}
-  
 }
 
-function perform(){
+function perform(){	
+	getAllApps();
 	getAllBookmarks();
 	getHistories();
 	
@@ -173,14 +173,27 @@ function perform(){
 		
 	   if( checkPageElementExistsId("popular") && isEmpty( $("#popular")[0] ) && siteRating[0] != undefined ){
 	   		addPopularToPage();
-	   }	   
+	   }	
+	   if( !checkPageElementExistsId("app-list") && completeList[0] != undefined ){
+		   addAppsToPage();
+	   }
+	      
 	}
-	
 }
 
 /*** LOGIC ***/
 
 /* page managing helpers */
+
+function renderApps(){
+	html = new EJS({url:'ejs/apps.ejs'}).render([]);
+	return html;
+}
+
+function addAppsToPage(){
+	jQuery('#apps-menu')[0].innerHTML = renderApps();
+}
+
 function addAllBookmarksToPage(){
 	allBookmarks.forEach(function(bookmark){
 		$("#bookmarks")[0].innerHTML += renderBookmarkHtml( bookmark ) ;	

@@ -51,3 +51,8 @@ body{
 	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.2); 
 	-webkit-border-radius: 2px;	
 }
+
+.app_pict{
+	width:32px;
+	height:32px;
+}
