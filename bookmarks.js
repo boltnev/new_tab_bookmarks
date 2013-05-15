@@ -72,20 +72,6 @@ function getAllApps(){
     	completeList = completeList.sort(compareByName);
 	}) 
 }  	
-	
-function getIconURL(app) {
-  	if (!app.icons || app.icons.length == 0) {
-  	  return chrome.extension.getURL('icon.png');
-  	}
-  	var largest = {size:0};
-  	for (var i = 0; i < app.icons.length; i++) {
-    	var icon = app.icons[i];
-   		if (icon.size > largest.size) {
-   			largest = icon;
-    	}
-  	}
- 	return largest.url;
-}
 
 function launchApp(id) {
 	chrome.management.launchApp(id);

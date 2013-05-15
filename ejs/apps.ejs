@@ -1,12 +1,19 @@
 <a href="#" id="app-list" class="dropdown-toggle" data-toggle="dropdown">All my apps</a>
 <!-- Link or button to toggle dropdown -->
 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-
+	<li>
+		<a href="https://chrome.google.com/webstore/category/apps">
+			 <img class="app_pict" src="images/webstore.png" />
+	    	 Chrome Web store
+		</a>
+	</li>
+	<li class="divider"></li>
 	<% for(var i = 0; i < completeList.length; i++ ) {%>
 	<li>
 		<a href="<%= completeList[i].appLaunchUrl %>">
 			 <img class="app_pict" src="<%= completeList[i].icons[completeList[i].icons.length - 1].url %>" />
-	    <%= completeList[i].name %></a>
+	    	 <%= completeList[i].name %>
+		</a>
 	</li>
 	<% }%>
 </ul>
