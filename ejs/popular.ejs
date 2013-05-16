@@ -1,5 +1,5 @@
 <ul class="unstyled">
-	<% for(var i = 0; i < DEFAULT_POPULAR_COUNT; i++) { %>
+	<% for(var i = 0; i < DEFAULT_POPULAR_COUNT && i < siteRating.length; i++) { %>
 	   <li>		<img src='chrome://favicon/<%= siteRating[i][0] %>' />
        <a href="<%= siteRating[i][0] %>"><%= url_domain(siteRating[i][0]) %></a></li>
 	<% } %>
