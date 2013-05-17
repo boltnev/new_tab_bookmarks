@@ -64,11 +64,6 @@ function getAllApps(){
         		completeList.push(info[i]);
 			}
       	}
-      	if (appCount == 0) {
-        	$('search').style.display = 'none';
-        	$('appstore_link').style.display = '';
-        	return;
-      	}
     	completeList = completeList.sort(compareByName);
 	}) 
 }  	
