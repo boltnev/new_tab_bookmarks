@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Bookmarks on new tab",
   "description": "This extension adds 56 last bookmarks on new tab page. Also it allows to see the list of most popular sites for the last 7 days",
-  "version": "1.1",
+  "version": "1.2",
 
   "chrome_url_overrides" : {
     "newtab": "my_newtab.html"
